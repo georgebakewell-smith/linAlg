@@ -51,6 +51,17 @@ double normSquare(const double array[], size_t lenArr){
     return result;
 }
 
+double *subArr(const double array1[], const double array2[], size_t lenArr){
+    //Perfoms a - b on arrays a,b and returns point to resulting array
+    double *sumArr = (double*)malloc(lenArr*sizeof(double));
+
+    for(int i=0;i<lenArr;i++){
+        sumArr[i] = array1[i] - array2[i];
+    }
+
+    return sumArr;
+}
+
 double *addArr(const double array1[], const double array2[], size_t lenArr){
     //Adds arrays a + b together and returns point to resulting array
     double *sumArr = (double*)malloc(lenArr*sizeof(double));
