@@ -9,12 +9,12 @@ int main()
 
     //add a+b arrays together
     double *arr = addArr(a,b,lenArr);
-    printf("%f\n", normSquare(a,lenArr));
-    printf("%f", dot(a,a, lenArr));
-    //Print the norm square of the result to test
-    //printf("\n\n%f", normSquare(arr,lenArr));
-    printf("%d", testf());
+    double *arr2 = vecScalar(3,arr,lenArr);
+    printArr(arr,lenArr);
+    printArr(arr2, lenArr);
+
     freeArray(arr);
+    freeArray(arr2);
 
     return 0;
 }

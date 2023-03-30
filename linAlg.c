@@ -8,6 +8,15 @@ int testf(){
     return a;
 }
 
+double *vecScalar(double a, const double array[], size_t lenArr){
+    //Takes in scalar and array and returns the array multiplied by the scalar
+    double *result = (double*)malloc(lenArr*sizeof(double));
+    for(int i=0;i<lenArr;i++){
+        result[i] = a*array[i];
+    }
+    return result;
+}
+
 void freeArray(double array[]){
     //Frees array from within library
     free(array);
@@ -25,7 +34,7 @@ return result;
 
 }
 
-void printArr(double array[], size_t lenArr){
+void printArr(double *array, size_t lenArr){
     //Takes in an array and prints it as a column vector
     for(int i=0;i<lenArr;i++){
         printf("%f\n", array[i]);
