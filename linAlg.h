@@ -1,6 +1,7 @@
 #ifndef linAlg
 #define linAlg
 
+double *powArrEl(double y, const double array[], size_t lenArr);
 double *vecScalar(double a, const double array[], size_t lenArr);
 int testf();
 void freeArray(double array[]);

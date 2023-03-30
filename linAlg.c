@@ -1,6 +1,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include "linAlg.h"
 
 int testf(){
@@ -39,6 +40,16 @@ void printArr(double *array, size_t lenArr){
     for(int i=0;i<lenArr;i++){
         printf("%f\n", array[i]);
     }
+}
+
+double *powArrEl(double y, const double array[], size_t lenArr){
+    //Calculates element wise exponentiation of array^y
+    double *result = (double*)malloc(lenArr*sizeof(double));
+    for(int i=0;i<lenArr;i++){
+        result[i] = pow(array[i],y);
+    }
+
+    return result;
 }
 
 double normSquare(const double array[], size_t lenArr){
