@@ -23,9 +23,9 @@ struct Matrix *createMatrix(size_t m, size_t n){
     mat->rows = 0;
     mat->cols = 0;
     //allocate memory for the matrix data
-    mat->data = (int**) malloc(m * sizeof(int*));
+    mat->data = (double**) malloc(m * sizeof(double*));
     for (int i = 0; i < m; i++) {
-        mat->data[i] = (int*) malloc(n * sizeof(int));
+        mat->data[i] = (double*) malloc(n * sizeof(double));
     }
     mat->rows = m;
     mat->cols = n;

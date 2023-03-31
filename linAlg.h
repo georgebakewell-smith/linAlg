@@ -4,7 +4,7 @@
 struct Matrix {
     int rows;
     int cols;
-    int **data;
+    double **data;
 };
 
 struct Matrix *createMatrix(size_t m, size_t n);
