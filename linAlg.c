@@ -4,9 +4,39 @@
 #include <math.h>
 #include "linAlg.h"
 
-int testf(){
-    int a=2;
-    return a;
+void freeMatrix(struct Matrix *mat){
+// free the memory allocated for the matrix data
+
+    for (int i = 0; i < mat->rows; i++) {
+        free(mat->data[i]);
+    }
+    free(mat->data);
+
+    // free the memory allocated for the Matrix structure
+    free(mat);
+}
+
+struct Matrix *createMatrix(size_t m, size_t n){
+    //Allocates memory for a mxn matrix structure, which stores data and the values m,n
+    struct Matrix *mat = (struct Matrix*) malloc(sizeof(struct Matrix));
+    //Initialise rows and cols to 0
+    mat->rows = 0;
+    mat->cols = 0;
+    //allocate memory for the matrix data
+    mat->data = (int**) malloc(m * sizeof(int*));
+    for (int i = 0; i < m; i++) {
+        mat->data[i] = (int*) malloc(n * sizeof(int));
+    }
+    mat->rows = m;
+    mat->cols = n;
+
+    return mat;
+}
+
+
+void setMatrix(struct Matrix *mat, const int i, const int j, double x){
+    //Sets i,j element of matrix to x
+    mat->data[i][j] = x;
 }
 
 double *vecScalar(double a, const double array[], size_t lenArr){
