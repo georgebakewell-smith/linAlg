@@ -7,6 +7,7 @@ struct Matrix {
     double **data;
 };
 
+void printMat(struct Matrix *mat);
 struct Matrix *createMatrix(size_t m, size_t n);
 void freeMatrix(struct Matrix *mat);
 void setMatrix(struct Matrix *mat, const int i, const int j, double x);

@@ -4,6 +4,16 @@
 #include <math.h>
 #include "linAlg.h"
 
+void printMat(struct Matrix *mat){
+
+    for(int i=0;i<mat->rows;i++){
+        for(int j=0;j<mat->cols;j++){
+            printf("%f\t",mat->data[i][j]);
+        }
+        printf("\n");
+    }
+}
+
 void freeMatrix(struct Matrix *mat){
 // free the memory allocated for the matrix data
 
