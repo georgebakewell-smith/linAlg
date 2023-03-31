@@ -64,25 +64,19 @@ struct Matrix *createMatrix(size_t m, size_t n){
     return mat;
 }
 
-
 void setMatrix(struct Matrix *mat, const int i, const int j, double x){
     //Sets i,j element of matrix to x
     mat->data[i][j] = x;
 }
 
-double *vecScalar(double a, const double array[], size_t lenArr){
-    //Takes in scalar and array and returns the array multiplied by the scalar
-    double *result = (double*)malloc(lenArr*sizeof(double));
-    for(int i=0;i<lenArr;i++){
-        result[i] = a*array[i];
+struct Matrix *scalarMat(double a, struct Matrix *mat){
+    //Takes in scalar and matrix and returns pointer to the matrix multiplied by the scalar
+    struct Matrix *result = createMatrix(mat->rows,mat->cols);
+    for(int i=0;i<mat->rows;i++){
+        for(int j=0;j<mat->cols;j++)
+        result->data[i][j] = a*mat->data[i][j];
     }
     return result;
-}
-
-void freeArray(double array[]){
-    //Frees array from within library
-    free(array);
-    printf("\nFree successful!\n");
 }
 
 double dot(double array1[], double array2[], size_t lenArr){
@@ -96,18 +90,13 @@ return result;
 
 }
 
-void printArr(double *array, size_t lenArr){
-    //Takes in an array and prints it as a column vector
-    for(int i=0;i<lenArr;i++){
-        printf("%f\n", array[i]);
-    }
-}
-
-double *powArrEl(double y, const double array[], size_t lenArr){
-    //Calculates element wise exponentiation of array^y
-    double *result = (double*)malloc(lenArr*sizeof(double));
-    for(int i=0;i<lenArr;i++){
-        result[i] = pow(array[i],y);
+struct Matrix *powMatEl(double y, struct Matrix *mat){
+    //Calculates element wise exponentiation of mat^y
+    struct Matrix *result = createMatrix(mat->rows,mat->cols);
+    for(int i=0;i<mat->rows;i++){
+            for(int j=0;j<mat->cols;j++){
+                result->data[i][j] = pow(mat->data[i][j],y);
+            }
     }
 
     return result;

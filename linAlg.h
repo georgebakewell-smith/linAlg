@@ -12,12 +12,10 @@ void printMat(struct Matrix *mat);
 struct Matrix *createMatrix(size_t m, size_t n);
 void freeMatrix(struct Matrix *mat);
 void setMatrix(struct Matrix *mat, const int i, const int j, double x);
-double *powArrEl(double y, const double array[], size_t lenArr);
-double *vecScalar(double a, const double array[], size_t lenArr);
-void freeArray(double array[]);
+struct Matrix *powMatEl(double y, struct Matrix *mat);
+struct Matrix *scalarMat(double a, struct Matrix *mat);
 struct Matrix *subMat(struct Matrix *mat1, struct Matrix *mat2);
 struct Matrix *addMat(struct Matrix *mat1, struct Matrix *mat2);
 double normSquare(struct Matrix *vec);
-void printArr(double array[], size_t lenArr);
 double dot(double array1[], double array2[], size_t lenArr);
 #endif
