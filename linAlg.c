@@ -1,7 +1,7 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <stddef.h>
 #include "linAlg.h"
 
 struct Matrix *multMat(struct Matrix *mat1, struct Matrix *mat2){
@@ -113,14 +113,27 @@ double *powArrEl(double y, const double array[], size_t lenArr){
     return result;
 }
 
-double normSquare(const double array[], size_t lenArr){
-    //Calculates norm square of an array and returns as scalar
-    double result = 0;
+double normSquare(struct Matrix *vec){
+    //Calculates norm square of a vector and returns as scalar
+    if(vec->rows != 1 && vec->cols !=1){
+        printf("Cannot perform normSquare(). One of matrix dimensions must be zero.");
+        return -1;
 
-    for(int i=0;i<lenArr;i++){
-        result += array[i]*array[i];
+    } else{
+        double result = 0;
+        if(vec->rows==1){
+            for(int i=0;i<vec->cols;i++){
+                result += vec->data[0][i]*vec->data[0][i];
+            }
+        } else{
+            for(int i=0;i<vec->rows;i++){
+                result += vec->data[i][0]*vec->data[i][0];
+            }
+        }
+
+        return result;
     }
-    return result;
+
 }
 
 double *subArr(const double array1[], const double array2[], size_t lenArr){

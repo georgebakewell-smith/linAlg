@@ -1,3 +1,4 @@
+#include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,10 +6,10 @@
 
 int main()
 {
-    double arr1[2][2] = {{4,3},{1,7}};
-    double arr2[2][3] = {{9,4,3},{2,7,1}};
-    struct Matrix *m1 = createMatrix(2,2);
-    struct Matrix *m2 = createMatrix(2,3);
+    double arr1[3][3] = {{4,3,1},{1,7,4},{4,0,3}};
+    double arr2[3][1] = {{1.5},{2},{3}};
+    struct Matrix *m1 = createMatrix(3,3);
+    struct Matrix *m2 = createMatrix(3,1);
 
     for (int i = 0; i < m1->rows; i++) {
         for (int j = 0; j < m1->cols; j++) {
@@ -23,6 +24,7 @@ int main()
     }
     struct Matrix *m3 = multMat(m1,m2);
     printMat(m3);
+    printf("\n%f",normSquare(m3));
 
     freeMatrix(m1);
     freeMatrix(m2);
