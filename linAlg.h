@@ -17,5 +17,5 @@ struct Matrix *scalarMat(double a, struct Matrix *mat);
 struct Matrix *subMat(struct Matrix *mat1, struct Matrix *mat2);
 struct Matrix *addMat(struct Matrix *mat1, struct Matrix *mat2);
 double normSquare(struct Matrix *vec);
-double dot(double array1[], double array2[], size_t lenArr);
+double dot(struct Matrix *vec1, struct Matrix *vec2);
 #endif

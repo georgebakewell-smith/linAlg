@@ -79,15 +79,16 @@ struct Matrix *scalarMat(double a, struct Matrix *mat){
     return result;
 }
 
-double dot(double array1[], double array2[], size_t lenArr){
-//Takes in two arrays and returns the dot product
-double result = 0;
+double dot(struct Matrix *vec1, struct Matrix *vec2){
+    //Takes in two vectors and returns the dot product
 
-for(int i=0;i<lenArr;i++){
-   result += array1[i]*array2[i];
-}
-return result;
+    //Still need to check if both are vectors. For the moment assume they are
+    double result = 0;
 
+    for(int i=0;i<vec1->rows;i++){
+       result += vec1->data[i][0]*vec2->data[i][0];
+    }
+    return result;
 }
 
 struct Matrix *powMatEl(double y, struct Matrix *mat){
