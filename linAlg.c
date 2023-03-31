@@ -20,7 +20,7 @@ struct Matrix *multMat(struct Matrix *mat1, struct Matrix *mat2){
         }
         return mat3;
     } else{
-        printf("Matrix dimensions not compatible for matrix multiplication.");
+        printf("Matrix dimensions not compatible for matrix multiplication.\n");
         return NULL;
     }
 }
@@ -82,7 +82,7 @@ double *vecScalar(double a, const double array[], size_t lenArr){
 void freeArray(double array[]){
     //Frees array from within library
     free(array);
-    printf("\nFree successful!");
+    printf("\nFree successful!\n");
 }
 
 double dot(double array1[], double array2[], size_t lenArr){
@@ -116,7 +116,7 @@ double *powArrEl(double y, const double array[], size_t lenArr){
 double normSquare(struct Matrix *vec){
     //Calculates norm square of a vector and returns as scalar
     if(vec->rows != 1 && vec->cols !=1){
-        printf("Cannot perform normSquare(). One of matrix dimensions must be zero.");
+        printf("Cannot perform normSquare(). One of matrix dimensions must be zero.\n");
         return -1;
 
     } else{
@@ -136,24 +136,36 @@ double normSquare(struct Matrix *vec){
 
 }
 
-double *subArr(const double array1[], const double array2[], size_t lenArr){
-    //Perfoms a - b on arrays a,b and returns point to resulting array
-    double *sumArr = (double*)malloc(lenArr*sizeof(double));
+struct Matrix *subMat(struct Matrix *mat1, struct Matrix *mat2){
+    // Subtracts mat1 - mat2 and returns pointer to resulting matrix
 
-    for(int i=0;i<lenArr;i++){
-        sumArr[i] = array1[i] - array2[i];
+    if(mat1->rows==mat2->rows && mat1->cols==mat2->cols){
+        struct Matrix *mat3 = createMatrix(mat1->rows,mat1->cols);
+        for(int i=0;i<mat1->rows;i++){
+            for(int j=0;j<mat1->cols;j++){
+                mat3->data[i][j] = mat1->data[i][j] - mat2->data[i][j];
+            }
+        }
+        return mat3;
+    } else{
+        printf("Matrix dimensions must match.\n");
+        return NULL;
     }
-
-    return sumArr;
 }
 
-double *addArr(const double array1[], const double array2[], size_t lenArr){
-    //Adds arrays a + b together and returns point to resulting array
-    double *sumArr = (double*)malloc(lenArr*sizeof(double));
+struct Matrix *addMat(struct Matrix *mat1, struct Matrix *mat2){
+    //Adds matrices mat1 + mat2 together and returns pointer to resulting matrix
 
-    for(int i=0;i<lenArr;i++){
-        sumArr[i] = array1[i] + array2[i];
+    if(mat1->rows==mat2->rows && mat1->cols==mat2->cols){
+        struct Matrix *mat3 = createMatrix(mat1->rows,mat1->cols);
+        for(int i=0;i<mat1->rows;i++){
+            for(int j=0;j<mat1->cols;j++){
+                mat3->data[i][j] = mat1->data[i][j] + mat2->data[i][j];
+            }
+        }
+        return mat3;
+    } else{
+        printf("Matrix dimensions must match.\n");
+        return NULL;
     }
-
-    return sumArr;
 }
