@@ -4,8 +4,29 @@
 #include <math.h>
 #include "linAlg.h"
 
-void printMat(struct Matrix *mat){
+struct Matrix *multMat(struct Matrix *mat1, struct Matrix *mat2){
+    //Takes in pointers to two matrices, multiplies them together, creates a third matrix, stores and returns result.
+    double sum;
+    if(mat1->cols==mat2->rows){
+        struct Matrix *mat3 = createMatrix(mat1->rows,mat2->cols);
+        for(int i=0;i<mat1->rows;i++){
+            for(int j=0;j<mat2->cols;j++){
+                sum = 0;
+                for(int k=0;k<mat1->cols;k++){
+                    sum += mat1->data[i][k]*mat2->data[k][j];
+                }
+                mat3->data[i][j] = sum;
+            }
+        }
+        return mat3;
+    } else{
+        printf("Matrix dimensions not compatible for matrix multiplication.");
+        return NULL;
+    }
+}
 
+void printMat(struct Matrix *mat){
+    //Takes a pointer to a matrix structure and prints
     for(int i=0;i<mat->rows;i++){
         for(int j=0;j<mat->cols;j++){
             printf("%f\t",mat->data[i][j]);
